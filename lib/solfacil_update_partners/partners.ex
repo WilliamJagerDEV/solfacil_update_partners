@@ -21,6 +21,3 @@ defmodule SolfacilUpdatePartners.Partners do
     |> cast(params, @fields)
   end
 end
-
-
-
