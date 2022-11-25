@@ -45,7 +45,9 @@ defmodule SolfacilUpdatePartners.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
-      {:httpoison, "~> 1.8"}
+      {:httpoison, "~> 1.8"},
+      {:floki, "~> 0.34.0"},
+      {:csv, "~> 3.0.4"}
     ]
   end
 
