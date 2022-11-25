@@ -37,6 +37,9 @@ defmodule SolfacilUpdatePartnersWeb.PartnersController do
   end
 
 
+  
+
+
 
 
 
