@@ -5,18 +5,22 @@ defmodule SolfacilUpdatePartnersWeb.PartnersController do
   alias SolfacilUpdatePartners.Partners
   alias SolfacilUpdatePartners.Api.CheckCep
 
-  def create(conn, %{"filename" => csv}) do
-    csv =
-      "#{csv.path}"
-      |> Path.expand(__DIR__)
-      |> File.stream!()
-      |> CSV.decode(headers: true)
-      |> Enum.map(fn data -> data end)
-      |> Enum.map(fn {:ok, partner} -> update_partner(partner) |> save() end)
+  def create(conn, %{"filename" => file}) do
+    get_csv(file)
+    |> Enum.map(fn data -> data end)
+    |> Enum.map(fn {:ok, partner} -> update_partner(partner) |> save() end)
 
     conn
     |> put_status(:ok)
     |> text("Requisição recebida.")
+  end
+
+  def get_csv(file) do
+    file =
+      "#{file.path}"
+      |> Path.expand(__DIR__)
+      |> File.stream!()
+      |> CSV.decode(headers: true)
   end
 
   defp update_partner(partner) do

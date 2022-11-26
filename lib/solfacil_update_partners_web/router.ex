@@ -9,6 +9,7 @@ defmodule SolfacilUpdatePartnersWeb.Router do
     pipe_through :api
 
     post "/partner", PartnersController, :create
+    post "/test", PartnersController, :test
     get "/partner", PartnersController, :index
   end
 
