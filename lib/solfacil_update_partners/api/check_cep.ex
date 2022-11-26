@@ -1,10 +1,14 @@
 defmodule SolfacilUpdatePartners.Api.CheckCep do
-  @url "viacep.com.br/ws/"
-
   def get_address(cep) do
     cep = cep |> String.replace([",", "-", ".", "_"], "")
-    {:ok, %HTTPoison.Response{body: body}} = HTTPoison.get("viacep.com.br/ws/" <> cep <> "/json")
-    {:ok, address} = Jason.decode(body)
-    address
+    HTTPoison.get("viacep.com.br/ws/" <> cep <> "/json") |> handle_response()
+  end
+
+  defp handle_response({:ok, %HTTPoison.Response{status_code: 200, body: body}}) do
+    Jason.decode(body)
+  end
+
+  defp handle_response({:ok, %HTTPoison.Response{status_code: status_code}}) do
+    {:error, %{status_code: status_code}}
   end
 end

@@ -1,6 +1,6 @@
 defmodule SolfacilUpdatePartnersWeb.PartnersController do
   use SolfacilUpdatePartnersWeb, :controller
-  import Ecto. Query
+  import Ecto.Query
   alias SolfacilUpdatePartners.Repo
   alias SolfacilUpdatePartners.Partners
   alias SolfacilUpdatePartners.Api.CheckCep
@@ -41,8 +41,13 @@ defmodule SolfacilUpdatePartnersWeb.PartnersController do
   end
 
   defp update_locale(partner) do
-    %{"localidade" => cidade, "uf" => estado} = CheckCep.get_address(partner["cep"])
-    Map.put(partner, "cidade", cidade) |> Map.put("estado", estado)
+    case CheckCep.get_address(partner["cep"]) do
+      {:ok, %{"localidade" => cidade, "uf" => estado}} ->
+        Map.put(partner, "cidade", cidade) |> Map.put("estado", estado)
+
+      {:error, %{status_code: _status_code}} ->
+        Map.put(partner, "cidade", "cep inválido") |> Map.put("estado", "cep inválido")
+    end
   end
 
   defp save(partner) do
