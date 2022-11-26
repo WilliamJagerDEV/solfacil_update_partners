@@ -8,7 +8,9 @@ defmodule SolfacilUpdatePartnersWeb.PartnersController do
   def create(conn, %{"filename" => file}) do
     get_csv(file)
     |> Enum.map(fn data -> data end)
-    |> Enum.map(fn {:ok, partner} -> update_partner(partner) |> save() end)
+    |> Enum.map(fn {:ok, partner} ->
+      validate_partner(partner)
+    end)
 
     conn
     |> put_status(:ok)
@@ -23,7 +25,25 @@ defmodule SolfacilUpdatePartnersWeb.PartnersController do
       |> CSV.decode(headers: true)
   end
 
-  defp update_partner(partner) do
+  defp validate_partner(partner) do
+    case check_cnpj(partner["CNPJ"]) do
+      true ->
+        partner
+        |> update_partner_map()
+        |> IO.inspect(label: "PARCEIRO SALVO")
+        |> save()
+
+      false ->
+        partner
+        |> IO.inspect(label: "PARCEIRO NÃO SALVO")
+    end
+  end
+
+  defp check_cnpj(cnpj) do
+    Cpfcnpj.valid?({:cnpj, cnpj})
+  end
+
+  defp update_partner_map(partner) do
     partner
     |> update_keys()
     |> update_locale()
