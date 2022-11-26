@@ -1,5 +1,6 @@
 defmodule SolfacilUpdatePartnersWeb.PartnersController do
   use SolfacilUpdatePartnersWeb, :controller
+  import Ecto. Query
   alias SolfacilUpdatePartners.Repo
   alias SolfacilUpdatePartners.Partners
   alias SolfacilUpdatePartners.Api.CheckCep
@@ -47,5 +48,17 @@ defmodule SolfacilUpdatePartnersWeb.PartnersController do
   defp save(partner) do
     Partners.changeset(partner)
     |> Repo.insert()
+  end
+
+  def index(conn, _params) do
+    with list <- list() do
+      conn
+      |> put_status(:ok)
+      |> render("index.json", partners: list)
+    end
+  end
+
+  defp list do
+    Repo.all(from(p in Partners))
   end
 end

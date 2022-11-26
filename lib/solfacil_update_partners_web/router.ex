@@ -9,6 +9,7 @@ defmodule SolfacilUpdatePartnersWeb.Router do
     pipe_through :api
 
     post "/partner", PartnersController, :create
+    get "/partner", PartnersController, :index
   end
 
   # Enables LiveDashboard only for development

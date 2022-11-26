@@ -7,7 +7,7 @@ import Config
 # Run `mix help test` for more information.
 config :solfacil_update_partners, SolfacilUpdatePartners.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "26maio09",
   hostname: "localhost",
   database: "solfacil_update_partners_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
