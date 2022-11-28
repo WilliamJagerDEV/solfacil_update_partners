@@ -10,7 +10,7 @@ defmodule SolfacilUpdatePartnersWeb.Router do
 
     post "/partner", PartnersController, :create
     post "/test", PartnersController, :test
-    get "/partner", PartnersController, :index
+    get "/partner/:id", PartnersController, :index
   end
 
   # Enables LiveDashboard only for development

@@ -5,11 +5,11 @@ defmodule SolfacilUpdatePartnersWeb.PartnersController do
   alias SolfacilUpdatePartners.Partners
   alias SolfacilUpdatePartners.Api.CheckCep
 
-  def create(conn, %{"filename" => file}) do
+  def create(conn, %{"filename" => file, "client_id" => client_id}) do
     get_csv(file)
     |> Enum.map(fn data -> data end)
     |> Enum.map(fn {:ok, partner} ->
-      validate_partner(partner)
+      validate_partner(partner, client_id)
     end)
 
     conn
@@ -25,17 +25,17 @@ defmodule SolfacilUpdatePartnersWeb.PartnersController do
       |> CSV.decode(headers: true)
   end
 
-  defp validate_partner(partner) do
+  defp validate_partner(partner, client_id) do
     case check_cnpj(partner["CNPJ"]) do
       true ->
         partner
-        |> update_partner_map()
-        |> IO.inspect(label: "PARCEIRO SALVO")
+        |> update_partner_map(client_id)
+        |> IO.inspect(label: "LOG PARCEIRO SALVO")
         |> save()
 
       false ->
         partner
-        |> IO.inspect(label: "PARCEIRO NÃO SALVO")
+        |> IO.inspect(label: "LOG PARCEIRO NÃO SALVO")
     end
   end
 
@@ -43,10 +43,10 @@ defmodule SolfacilUpdatePartnersWeb.PartnersController do
     Cpfcnpj.valid?({:cnpj, cnpj})
   end
 
-  defp update_partner_map(partner) do
+  defp update_partner_map(partner, client_id) do
     partner
     |> update_keys()
-    |> update_locale()
+    |> update_map(client_id)
   end
 
   def update_keys(partner) do
@@ -64,10 +64,10 @@ defmodule SolfacilUpdatePartnersWeb.PartnersController do
     end)
   end
 
-  defp update_locale(partner) do
+  defp update_map(partner, client_id) do
     case CheckCep.get_address(partner["cep"]) do
       {:ok, %{"localidade" => cidade, "uf" => estado}} ->
-        Map.put(partner, "cidade", cidade) |> Map.put("estado", estado)
+        Map.put(partner, "cidade", cidade) |> Map.put("estado", estado) |> Map.put("client_id", client_id)
 
       {:error, %{status_code: _status_code}} ->
         Map.put(partner, "cidade", "cep inválido") |> Map.put("estado", "cep inválido")
@@ -79,15 +79,22 @@ defmodule SolfacilUpdatePartnersWeb.PartnersController do
     |> Repo.insert()
   end
 
-  def index(conn, _params) do
-    with list <- list() do
+  def index(conn, params) do
+    with list <- list(params) do
       conn
       |> put_status(:ok)
       |> render("index.json", partners: list)
     end
   end
 
-  defp list do
-    Repo.all(from(p in Partners))
+  # client_id = 2451549900013822061991 (rafael camarda)
+
+  defp list(%{"id" => client_id}) do
+    query = from(
+        p in Partners,
+        where: p.client_id == ^client_id,
+        select: p
+      )
+    Repo.all(query)
   end
 end
