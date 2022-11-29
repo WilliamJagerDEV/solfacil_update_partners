@@ -24,9 +24,6 @@ defmodule SolfacilUpdatePartners.Api.CheckCep do
   """
 
   def get_address(cep) do
-    # cep |> IO.inspect(label: "XXXXXXXXXXXXXX")
-
-
     case cep do
       nil -> {:error, "Invalid CEP"}
       cep ->

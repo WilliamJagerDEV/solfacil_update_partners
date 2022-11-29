@@ -41,7 +41,9 @@ defmodule SolfacilUpdatePartners.Partner.Save do
           nome_fantasia: partner["nome_fantasia"],
           email: partner["email"],
           telefone: partner["telefone"],
-          cep: partner["cep"]
+          cep: partner["cep"],
+          cidade: partner["cidade"],
+          estado: partner["estado"]
         ]
       ],
       conflict_target: [:cnpj]

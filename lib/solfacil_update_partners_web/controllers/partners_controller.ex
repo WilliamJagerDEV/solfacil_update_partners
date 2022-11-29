@@ -1,9 +1,12 @@
 defmodule SolfacilUpdatePartnersWeb.PartnersController do
   use SolfacilUpdatePartnersWeb, :controller
 
+  alias SolfacilUpdatePartnersWeb.FallbackController
   alias SolfacilUpdatePartners.Partner.Csv
   alias SolfacilUpdatePartners.Partner.Build
   alias SolfacilUpdatePartners.Partner.Get
+
+  action_fallback FallbackController
 
   def create(conn, %{"filename" => file, "client_id" => client_id}) do
     Csv.get_csv(file)
