@@ -7,7 +7,6 @@ defmodule SolfacilUpdatePartnersWeb.PartnersController do
 
   def create(conn, %{"filename" => file, "client_id" => client_id}) do
     Csv.get_csv(file)
-    |> Enum.map(fn data -> data end)
     |> Enum.map(fn {:ok, partner} ->
       Validate.validate_partner(partner, client_id)
     end)

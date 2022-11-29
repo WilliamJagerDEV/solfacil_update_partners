@@ -40,5 +40,4 @@ defmodule SolfacilUpdatePartners.Partner.Save do
       conflict_target: [:cnpj]
     )
   end
-
 end
