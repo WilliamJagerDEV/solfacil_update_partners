@@ -7,12 +7,12 @@ defmodule SolfacilUpdatePartners.Repo.Migrations.CreateTablePartners do
       add :razao_social, :string
       add :cnpj, :string
       add :telefone, :string
+      add :email, :string
       add :cep, :string
       add :cidade, :string
       add :estado, :string
       add :client_id, :string
 
-      # timestamps()
     end
 
     create unique_index(:partners, [:cnpj])

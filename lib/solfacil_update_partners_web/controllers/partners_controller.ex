@@ -2,13 +2,13 @@ defmodule SolfacilUpdatePartnersWeb.PartnersController do
   use SolfacilUpdatePartnersWeb, :controller
 
   alias SolfacilUpdatePartners.Partner.Csv
-  alias SolfacilUpdatePartners.Partner.Validate
+  alias SolfacilUpdatePartners.Partner.Build
   alias SolfacilUpdatePartners.Partner.Get
 
   def create(conn, %{"filename" => file, "client_id" => client_id}) do
     Csv.get_csv(file)
     |> Enum.map(fn {:ok, partner} ->
-      Validate.validate_partner(partner, client_id)
+      Build.build_partner(partner, client_id)
     end)
 
     conn

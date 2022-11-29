@@ -36,7 +36,14 @@ defmodule SolfacilUpdatePartners.Partner.Save do
   def save_partner(partner) do
     Partners.changeset(partner)
     |> Repo.insert(
-      on_conflict: [set: [razao_social: partner["razao_social"]]],
+      on_conflict: [
+        set: [
+          nome_fantasia: partner["nome_fantasia"],
+          email: partner["email"],
+          telefone: partner["telefone"],
+          cep: partner["cep"]
+        ]
+      ],
       conflict_target: [:cnpj]
     )
   end
