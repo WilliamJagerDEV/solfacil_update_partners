@@ -1,5 +1,6 @@
-defmodule SolfacilUpdatePartners.CheckCepTest do
+defmodule SolfacilUpdatePartners.Api.CheckCepTest do
   use ExUnit.Case
+  doctest SolfacilUpdatePartners.Api.CheckCep
   alias SolfacilUpdatePartners.Api.CheckCep
 
   describe("get_address/1") do
