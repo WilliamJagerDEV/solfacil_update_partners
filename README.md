@@ -53,18 +53,18 @@ Você terá 7 dias para fazer esse teste, a partir do recebimento deste desafio.
 
 ## Checklist
 
-(X) criar endpoint para receber upload de .csv
-(X) validar cnpj e não cpf
-(X) receber cidade e estado atraves do cep
-(X) inserir parceiro no banco
-(X) atualizar parceiro por cnpj
-(X) criar endpoint para listar parceiros do banco
-(X) código em Elixir
-(X) banco de dados PostgreSQL
-( ) notificar novos parceiros
-( ) testes unitários e de integração
-( ) docker para subir sistema com 1 linha de comando
-(?) código claro e limpo
-(?) código de fácil manutenção e alta coesão
-( ) documentação sucinta e explicativa de como rodar seu código e levantar os ambientes
-( )  fazer um fork do repositório do link a seguir e nos mandar um pull-request
+    - [x] criar endpoint para receber upload de .csv
+    - [x] validar cnpj e não cpf
+    - [x] receber cidade e estado atraves do cep
+    - [x] inserir parceiro no banco
+    - [x] atualizar parceiro por cnpj
+    - [x] criar endpoint para listar parceiros do banco
+    - [x] código em Elixir
+    - [x] banco de dados PostgreSQL
+    - [ ] notificar novos parceiros
+    - [x] testes unitários e de integração
+    - [ ] docker para subir sistema com 1 linha de comando
+    - [?] código claro e limpo
+    - [?] código de fácil manutenção e alta coesão
+    - [ ] documentação sucinta e explicativa de como rodar seu código e levantar os ambientes
+    - [ ]  fazer um fork do repositório do link a seguir e nos mandar um pull-request
