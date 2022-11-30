@@ -7,9 +7,9 @@ defmodule SolfacilUpdatePartners.Partner.Build do
 
   @doc """
   Caso númeor de cnpj esteja no padrão, esta função valida os dados um parceiro antes que sejam salvos, formatando key_words e inserindo cidade e estado caso cep esteja válido.
-  
+
   ## Examples
-  
+
     iex> SolfacilUpdatePartners.Partner.Build.build_partner(
     iex(1)>  %{
     iex(2)>    " CEP" => "1234",
@@ -21,7 +21,7 @@ defmodule SolfacilUpdatePartners.Partner.Build do
     iex(8)>   },
     iex(9)>   "2451549900013822061991"
     iex(10)> )
-  
+
       {:ok,
         %SolfacilUpdatePartners.Partners{
           __meta__: #Ecto.Schema.Metadata<:loaded, "partners">,
@@ -36,41 +36,23 @@ defmodule SolfacilUpdatePartners.Partner.Build do
           client_id: "2451549900013822061991"
         }
       }
-  
+
   """
 
-  # SolfacilUpdatePartners.Partner.Validate.build_partner("118.390.277-89")
-  # SolfacilUpdatePartners.Partner.Validate.build_partner("19.478.819/0001-97")
-  # SolfacilUpdatePartners.Partner.Validate.build_partner("24.410.913/0001-44")
 
-  # ------------------
-  # nubank
-  # 24.410.913/0001-44
-  # 999999999
-  # nil
-  # ------------------
-  # Sol Amarelo
-  # 16.470.954/0001-06
-  # ------------------
-  # Sol da manha
-  # 19.478.819/0001-97
-  # ------------------
-  # sol forte
-  # 12.473.742/0001-13
-  # ------------------
+
 
   def build_partner(partner, client_id) do
     partner = update_partner_map(partner, client_id)
 
     with true <- Cpfcnpj.valid?({:cnpj, partner["cnpj"]}),
          :cnpj_not_exists <- check_partner(partner["cnpj"]) do
-      IO.inspect(partner, label: "XXXXXXXXXX NÃO EXISTE XXXXXXXXXX")
       Save.save_partner(partner)
 
       Logger.info(%{
         partner_cnpj: partner["cnpj"],
         status: "Salvo",
-        msg: "CNPJ salvo e email enviado."
+        msg: "CNPJ salvo"
       })
 
       SendEmail.check_email(partner)
@@ -83,7 +65,6 @@ defmodule SolfacilUpdatePartners.Partner.Build do
         })
 
       :cnpj_exists ->
-        IO.inspect(partner, label: "XXXXXXXXXX EXISTE XXXXXXXXXX")
         Save.save_partner(partner)
 
         Logger.info(%{partner_cnpj: partner["cnpj"], status: "Atualizado", msg: "CNPJ atualizado"})

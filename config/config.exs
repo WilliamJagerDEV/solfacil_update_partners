@@ -29,10 +29,6 @@ config :solfacil_update_partners, SolfacilUpdatePartners.Mailer, adapter: Swoosh
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false
 
-# config :sample, Sample.Mailer,
-#   adapter: Swoosh.Adapters.Sendgrid,
-#   api_key: "SG.x.x"
-
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
