@@ -30,7 +30,7 @@ defmodule SolfacilUpdatePartners.Api.CheckCepTest do
       cep = "123456789"
       response = CheckCep.get_address(cep)
 
-      expected_response = {:error, %{status_code: 400}}
+      expected_response = {:error, "Invalid CEP"}
 
       assert response == expected_response
     end

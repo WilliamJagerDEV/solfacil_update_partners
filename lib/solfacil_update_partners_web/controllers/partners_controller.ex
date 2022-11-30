@@ -1,19 +1,19 @@
 defmodule SolfacilUpdatePartnersWeb.PartnersController do
   use SolfacilUpdatePartnersWeb, :controller
-
+  alias SolfacilUpdatePartners.Partner.Validate
   alias SolfacilUpdatePartners.Partner.Csv
   alias SolfacilUpdatePartners.Partner.Build
   alias SolfacilUpdatePartners.Partner.Get
+  alias SolfacilUpdatePartnersWeb.FallbackController
+
+  action_fallback FallbackController
 
   def create(conn, %{"filename" => file, "client_id" => client_id}) do
-    Csv.get_csv(file)
-    |> Enum.map(fn {:ok, partner} ->
-      Build.build_partner(partner, client_id)
-    end)
-
-    conn
-    |> put_status(:ok)
-    |> text("Requisição recebida.")
+    with return when is_list(return) <- Validate.validate_partners(file, client_id) do
+      conn
+      |> put_status(:ok)
+      |> text("Requisição recebida.")
+    end
   end
 
   def list(conn, params) do
