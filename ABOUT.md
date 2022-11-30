@@ -61,10 +61,10 @@ Você terá 7 dias para fazer esse teste, a partir do recebimento deste desafio.
     - [x] criar endpoint para listar parceiros do banco
     - [x] código em Elixir
     - [x] banco de dados PostgreSQL
-    - [ ] notificar novos parceiros
+    - [x] notificar novos parceiros
     - [x] testes unitários e de integração
-    - [ ] docker para subir sistema com 1 linha de comando
+    - [x] docker para subir sistema com 1 linha de comando (não testado por não haver isntalado WSL devido a um problema na BIOS)
     - [?] código claro e limpo
     - [?] código de fácil manutenção e alta coesão
-    - [ ] documentação sucinta e explicativa de como rodar seu código e levantar os ambientes
+    - [x] documentação sucinta e explicativa de como rodar seu código e levantar os ambientes
     - [ ]  fazer um fork do repositório do link a seguir e nos mandar um pull-request
