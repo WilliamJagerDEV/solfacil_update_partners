@@ -1,0 +1,19 @@
+Interactive Elixir (1.14.1) - press Ctrl+C to exit (type h() ENTER for help)
+iex(1)> ...(1)> ...(1)> ...(1)> ...(1)> ** (SyntaxError) iex:2:16: syntax error before: path
+    |
+  2 |     iex(2)>    path:
+    |                ^
+    (iex 1.14.1) lib/iex/evaluator.ex:292: IEx.Evaluator.parse_eval_inspect/3
+    (iex 1.14.1) lib/iex/evaluator.ex:187: IEx.Evaluator.loop/1
+    (iex 1.14.1) lib/iex/evaluator.ex:32: IEx.Evaluator.init/4
+    (stdlib 4.0.1) proc_lib.erl:240: :proc_lib.init_p_do_apply/3
+iex(1)> ** (SyntaxError) iex:1:40: unexpected token: )
+    |
+  1 |     iex(6)>    "2451549900013822061991")
+    |                                        ^
+    (iex 1.14.1) lib/iex/evaluator.ex:292: IEx.Evaluator.parse_eval_inspect/3
+    (iex 1.14.1) lib/iex/evaluator.ex:187: IEx.Evaluator.loop/1
+    (iex 1.14.1) lib/iex/evaluator.ex:32: IEx.Evaluator.init/4
+    (stdlib 4.0.1) proc_lib.erl:240: :proc_lib.init_p_do_apply/3
+iex(1)> nil
+iex(2)> Deseja finalizar o arquivo em lotes (S/N)? 

@@ -12,7 +12,7 @@ defmodule SolfacilUpdatePartnersWeb.PartnersController do
     with return when is_list(return) <- Validate.validate_partners(file, client_id) do
       conn
       |> put_status(:ok)
-      |> text("Requisição recebida.")
+      |> render("index.json", partners: return)
     end
   end
 
