@@ -3,9 +3,9 @@ defmodule SolfacilUpdatePartners.Partner.Save do
 
   @doc """
   Esta função salva os dados de um parceiro no banco ou os atualiza caso parceiro (cnpj) já exista.
-
+  
   ## Examples
-
+  
     iex> SolfacilUpdatePartners.Partner.Save.save_partner(
     iex(1)>  %{
     iex(2)>    "cep" => "84043-150",
@@ -18,7 +18,7 @@ defmodule SolfacilUpdatePartners.Partner.Save do
     iex(8)>    "razao_social" => "Sol Forte",
     iex(9)>    "telefone" => "21982079903"
     iex(10)>  })
-
+  
       %{
         "cep" => "84043-150",
         "cidade" => "Ponta Grossa",
@@ -30,7 +30,7 @@ defmodule SolfacilUpdatePartners.Partner.Save do
         "razao_social" => "Sol Forte",
         "telefone" => "21982079903"
       }
-
+  
   """
 
   def save_partner(partner) do

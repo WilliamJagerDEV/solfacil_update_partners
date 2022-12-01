@@ -4,11 +4,11 @@ defmodule SolfacilUpdatePartners.Partner.Get do
 
   @doc """
   Esta função busca todos os parceiros de um cliente por seu id (fictício: setado ao enviar arquivo .csv).
-
+  
   ## Examples
-
+  
     iex> SolfacilUpdatePartners.Partner.Get.get_by_client_id(%{"id" => "2451549900013822061991"})
-
+  
     [
       %SolfacilUpdatePartners.Partners{
         __meta__: #Ecto.Schema.Metadata<:loaded, "partners">,
@@ -47,7 +47,7 @@ defmodule SolfacilUpdatePartners.Partner.Get do
         client_id: "2451549900013822061991"
       }
     ]
-
+  
   """
 
   def get_by_client_id(%{"id" => client_id}) do

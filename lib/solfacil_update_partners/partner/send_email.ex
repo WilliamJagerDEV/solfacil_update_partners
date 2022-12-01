@@ -6,9 +6,9 @@ defmodule SolfacilUpdatePartners.Partner.SendEmail do
 
   @doc """
   Função responsável por receber os dados de um parceiro e se houver um email válido, notificar o salvamento deste parceiro por email..
-
+  
   ## Examples
-
+  
     iex> SolfacilUpdatePartners.Partner.SendEmail.check_email(%{
     iex(1)>  "cep" => " 29090490",
     iex(2)>  "cidade" => "Vitória",
@@ -20,11 +20,11 @@ defmodule SolfacilUpdatePartners.Partner.SendEmail do
     iex(8)>  "razao_social" => " Vivo LTDA",
     iex(9)>  "telefone" => " 555555555"
     iex(10)>   })
-
+  
     [info] [email_id: "d286f5ee157407baa876f2c15a22e6bb", msg: "Um email de boas vindas foi enviado para  vivo@vivo", partner_cnpj: "02.558.157/0001-62", status: "Email enviado"]
-
-
-
+  
+  
+  
   """
 
   def check_email(partner) do
@@ -37,8 +37,6 @@ defmodule SolfacilUpdatePartners.Partner.SendEmail do
         msg: "Não foi possível enviar um email de boas vindas."
       }
       |> tap(&Logger.info/1)
-
-
     end
   end
 

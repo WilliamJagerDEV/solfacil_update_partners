@@ -3,9 +3,9 @@ defmodule SolfacilUpdatePartners.Api.CheckCep do
 
   @doc """
   Esta função envia um cep para a api X e recebe dados locais desde cep.
-
+  
   ## Examples
-
+  
       iex> SolfacilUpdatePartners.Api.CheckCep.get_address("29.164-815")
       {:ok,
         %{
@@ -20,12 +20,14 @@ defmodule SolfacilUpdatePartners.Api.CheckCep do
           "siafi" => "5699",
           "uf" => "ES"
         }}
-
+  
   """
 
   def get_address(cep) do
     case cep do
-      nil -> {:error, "Invalid CEP"}
+      nil ->
+        {:error, "Invalid CEP"}
+
       cep ->
         cep = Regex.replace(~r/\D/, cep, "")
         HTTPoison.get("viacep.com.br/ws/" <> cep <> "/json") |> handle_response(cep)

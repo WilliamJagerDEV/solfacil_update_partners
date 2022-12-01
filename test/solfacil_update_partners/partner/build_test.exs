@@ -44,10 +44,10 @@ defmodule SolfacilUpdatePartners.Partner.BuildTest do
       response = Build.build_partner(partner_param, client_param)
 
       expected_response = %{
-              msg: "CNPJ não salvo por ser inválido",
-              partner_cnpj: "11839027789",
-              status: "Não salvo"
-            }
+        msg: "CNPJ não salvo por ser inválido",
+        partner_cnpj: "11839027789",
+        status: "Não salvo"
+      }
 
       assert response == expected_response
     end

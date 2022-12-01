@@ -3,7 +3,17 @@ defmodule SolfacilUpdatePartners.Partners do
   import Ecto.Changeset
   alias Ecto.Changeset
 
-  @fields [:nome_fantasia, :razao_social, :cnpj, :telefone, :email, :cep, :cidade, :estado, :client_id]
+  @fields [
+    :nome_fantasia,
+    :razao_social,
+    :cnpj,
+    :telefone,
+    :email,
+    :cep,
+    :cidade,
+    :estado,
+    :client_id
+  ]
   @derive {Jason.Encoder, only: @fields -- [:client_id]}
 
   schema "partners" do

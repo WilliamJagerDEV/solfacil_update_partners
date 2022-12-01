@@ -12,7 +12,6 @@ defmodule SolfacilUpdatePartners.Repo.Migrations.CreateTablePartners do
       add :cidade, :string
       add :estado, :string
       add :client_id, :string
-
     end
 
     create unique_index(:partners, [:cnpj])
