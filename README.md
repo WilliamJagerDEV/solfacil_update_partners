@@ -1,9 +1,5 @@
 # Teste Solfacil - Update Partners
 
-## Elixir / Phoenix containerized development environment
-
-This repo contains simple boilerplate files that can be added to any [Phoenix](https://www.phoenixframework.org/) application so you may run it and its database inside Docker containers using [Docker Compose](https://docs.docker.com/compose/).
-
 ## Docker
 `docker compose up` to start server with loggs or `docker compose up -d` with no loggs.
 
